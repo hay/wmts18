@@ -3,8 +3,8 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
     entry: [
-        './app/js/polyfills.js',
-        './app/js/app.js'
+        './static/js/polyfills.js',
+        './static/js/app.js'
     ],
     module : {
         rules : [
@@ -31,6 +31,6 @@ module.exports = {
     },
     output: {
         filename: './bundle.js',
-        path: path.resolve(__dirname, 'app')
+        path: path.resolve(__dirname, 'static')
     }
 };
