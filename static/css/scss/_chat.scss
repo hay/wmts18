@@ -27,6 +27,11 @@
         background: #e6e6e6;
     }
 
+    &__message-user {
+        background: #25feb9;
+        align-self: center;
+    }
+
     &__message-client {
         background: #259afe;
         align-self: flex-end;

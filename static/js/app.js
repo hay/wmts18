@@ -7,12 +7,28 @@ new Vue({
     el : "main",
 
     mounted() {
+        socket.on('login', (msg) => {
+            this.messages.push({
+                source : 'user',
+                text : `${msg} has logged in`
+            });
+        });
+
+        socket.on('logout', (msg) => {
+            this.messages.push({
+                source : 'user',
+                text : `${msg} has logged out`
+            });
+        });
+
         socket.on('message', (msg) => {
             this.messages.push({
                 source : 'server',
                 text : msg
             });
         });
+
+        socket.on('debug', (msg) => { console.log(msg) } );
     },
 
     data : {
