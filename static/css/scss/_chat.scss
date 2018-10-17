@@ -1,0 +1,45 @@
+.chat {
+    @include wh(100vw, 100vh);
+    @include flex-center;
+    overflow: hidden;
+
+    &__messages {
+        @include wh(100%, calc(100vh - 5rem));
+        max-width: 80rem;
+        padding: 3rem 0;
+        overflow-y: auto;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        list-style: none;
+    }
+
+    &__message {
+        padding: 1rem;
+        background-color: white;
+        border-radius: 1rem;
+        max-width: 80%;
+        margin-bottom: 1rem;
+    }
+
+    &__message-server {
+        background: #e6e6e6;
+    }
+
+    &__message-client {
+        background: #259afe;
+        align-self: flex-end;
+    }
+
+    &__input {
+        @include wh(100%, 5rem);
+    }
+
+    &__input input {
+        @include wh(100%);
+        border: 3px solid black;
+        font-size: 3rem;
+        padding: 1rem;
+    }
+}

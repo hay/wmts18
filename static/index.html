@@ -26,7 +26,24 @@
 </head>
 <body>
 <body>
-    <main v-cloak></main>
+    <main v-cloak>
+        <div class="chat">
+            <ul class="chat__messages">
+                <li v-for="(msg, index) in messages"
+                    class="chat__message"
+                    v-bind:class="'chat__message-' + msg.source"
+                    v-bind:key="index">
+                    {{msg.text}}
+                </li>
+            </ul>
+
+            <form class="chat__input"
+                  v-on:submit.prevent="submit">
+                <input v-model="input"
+                       placeholder="Message here" />
+            </form>
+        </div>
+    </main>
 
     <script src="bundle.js"></script>
 </body>

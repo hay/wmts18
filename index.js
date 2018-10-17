@@ -11,6 +11,19 @@ const PORT = 3000;
 
 io.on('connection', (socket) => {
     console.log('connected');
+    io.emit('message', 'Hey!');
+
+    socket.on('disconnect', () => {
+        console.log('disconnection');
+    });
+
+    socket.on('message', (msg) => {
+        console.log(`Got a message: {msg}`);
+
+        setTimeout(() => {
+            io.emit('message', msg.toUpperCase());
+        }, 500);
+    });
 });
 
 server.listen(PORT, () => {
