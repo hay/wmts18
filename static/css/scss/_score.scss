@@ -4,4 +4,14 @@
     left: 0;
     padding: 1rem;
     border: 1px solid $c-3;
+    background: white;
+
+    ul {
+        list-style: none;
+        display: flex;
+    }
+
+    li {
+        margin: 0 1rem;
+    }
 }

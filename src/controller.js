@@ -3,30 +3,45 @@ const Score = require('./score.js');
 
 const score = new Score();
 
+class History {
+    constructor() {
+        this.items = [];
+    }
+
+    push(item) {
+        this.items.push(item);
+    }
+}
+
 class Controller {
     constructor(io) {
         this.io = io;
+        this.history = new History();
     }
 
     start() {
         const io = this.io;
 
         this.io.on('connection', (socket) => {
-            let browser = false;
-            console.log('connect');
+            const userAgent = socket.request.headers['user-agent'];
+            const browser = new Browser(userAgent);
+            console.log('connecting', browser.getBrowserLabel());
             this.welcome(socket);
 
             socket.on('startsession', () => {
-                const userAgent = socket.request.headers['user-agent'];
-                browser = new Browser(userAgent);
 
                 if (browser.hasClass()) {
                     console.log('startsession', browser.getBrowserLabel());
                     const browserSession = score.addBrowser(browser.getBrowserLabel());
                     browser.setSession(browserSession);
                     io.emit('score', score.getScore());
-                    socket.emit('browser', browser.getSession());
-                    io.emit('login', browser.getSession());
+                    socket.emit('browser', browser.getSessionEmoji());
+                    io.emit('login', browser.getSessionEmoji());
+
+                    // Send history to socket
+                    this.history.items.forEach((item) => {
+                        socket.emit('message', item)
+                    });
 
                     if (score.isParty()) {
                         score.setParty(true);
@@ -45,7 +60,7 @@ class Controller {
                     console.log('disconnect ' + browser.getSession());
                     score.removeBrowser(browser.getBrowserLabel());
                     io.emit('score', score.getScore());
-                    io.emit('logout', browser.getSession());
+                    io.emit('logout', browser.getSessionEmoji());
 
                     if (score.party && !score.isParty()) {
                         console.log('KILL PARTY');
@@ -63,11 +78,15 @@ class Controller {
                 const m = `0${d.getMinutes()}`;
                 const time = `${h.slice(-2)}:${m.slice(-2)}`;
 
-                socket.broadcast.emit('message', {
+                const message = {
                     from : browser.getSession(),
                     text : msg,
                     time : time,
-                });
+                };
+
+                this.history.push(message);
+
+                socket.broadcast.emit('message', message);
             });
         });
     }

@@ -13,7 +13,7 @@ class Browser {
     }
 
     getBrowserLabel() {
-        return this.class.label;
+        return this.class ? this.class.label : 'Unknown browser';
     }
 
     getClass() {
@@ -28,7 +28,11 @@ class Browser {
     }
 
     getSession() {
-        return this.session;
+        return `${this.getBrowserLabel()} ${this.session}`;
+    }
+
+    getSessionEmoji() {
+        return `${this.class.emoji}${this.session}`;
     }
 
     hasClass() {

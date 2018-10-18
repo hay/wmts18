@@ -31,13 +31,14 @@
             <ul>
                 <li v-for="(type, label) in score"
                     v-bind:key="label">
-                    {{label}} {{type.sessions}} / {{type.count}}
+                    {{type.emoji}}{{type.sessions}}/{{type.count}}
                 </li>
             </ul>
         </div>
 
         <div class="chat">
-            <ul class="chat__messages">
+            <ul id="chat__messages"
+                class="chat__messages">
                 <li v-for="(msg, index) in messages"
                     class="chat__message"
                     v-bind:class="'chat__message-' + msg.source"

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import io from 'socket.io-client';
 
 const socket = io();
+let chatMessages;
 
 new Vue({
     el : "main",
@@ -37,6 +38,8 @@ new Vue({
                 time : msg.time,
                 text : msg.text
             });
+
+            this.scrollChat();
         });
 
         socket.on('modal', (modal) => {
@@ -67,13 +70,26 @@ new Vue({
             socket.emit('startsession');
         },
 
+        scrollChat() {
+            // Scroll window
+            if (!chatMessages) {
+                chatMessages = document.querySelector("#chat__messages");
+            }
+
+            Vue.nextTick(() => {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            });
+        },
+
         submit() {
             this.messages.push({
                 source : 'client',
                 text : this.input
             });
+
             socket.emit('message', this.input);
             this.input = null;
+            this.scrollChat();
         },
 
         youtubeLink(id) {

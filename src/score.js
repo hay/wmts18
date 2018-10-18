@@ -3,8 +3,9 @@ const CLASSES = require('../test/classes.js');
 
 function parseClass(cls) {
     return {
-        label : cls.label,
         count : cls.count,
+        emoji : cls.emoji,
+        label : cls.label,
         sessions : 0
     };
 }
@@ -19,7 +20,7 @@ class Score {
         if (browser in this.score) {
             this.score[browser].sessions += 1;
 
-            return `${browser} ${this.score[browser].sessions}`;
+            return this.score[browser].sessions;
         } else {
             return `undefined browser`;
         }
@@ -39,7 +40,12 @@ class Score {
 
     removeBrowser(browser) {
         if (browser in this.score) {
-            this.score[browser].sessions -= 1;
+            const sess = this.score[browser];
+            sess.sessions -= 1;
+
+            if (sess.sessions < 0) {
+                sess.sessions = 0;
+            }
         }
     }
 
