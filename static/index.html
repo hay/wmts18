@@ -27,12 +27,26 @@
 <body>
 <body>
     <main v-cloak>
+        <div class="score">
+            <ul>
+                <li v-for="(type, label) in score"
+                    v-bind:key="label">
+                    {{label}} {{type.sessions}} / {{type.count}}
+                </li>
+            </ul>
+        </div>
+
         <div class="chat">
             <ul class="chat__messages">
                 <li v-for="(msg, index) in messages"
                     class="chat__message"
                     v-bind:class="'chat__message-' + msg.source"
                     v-bind:key="index">
+                    <span v-if="msg.source === 'server'"
+                          class="chat__from">
+                        <strong>{{msg.from}}</strong>
+                        <time>{{msg.time}}</time>
+                    </span>
                     {{msg.text}}
                 </li>
             </ul>
@@ -42,6 +56,33 @@
                 <input v-model="input"
                        placeholder="Message here" />
             </form>
+        </div>
+
+        <div class="modal"
+             v-bind:class="'modal--' + modal.type"
+             v-if="showModal"
+             v-show="showModal">
+            <div class="modal__content modal__content--text">
+                 <h2 class="modal__title">
+                     {{modal.title}}
+                 </h2>
+
+                <p v-if="['text', 'error'].includes(modal.type)">{{modal.text}}</p>
+
+                 <iframe v-if="modal.type === 'youtube'"
+                         width="100%"
+                         height="100%"
+                         v-bind:src="youtubeLink(modal.youtubeId)"
+                         frameborder="0"
+                         allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+                <button
+                    class="button modal__button"
+                    v-if="modal.type === 'text'"
+                    v-on:click="closeModal">
+                    OK
+                </button>
+            </div>
         </div>
     </main>
 

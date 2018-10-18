@@ -24,16 +24,16 @@
     }
 
     &__message-server {
-        background: #e6e6e6;
+        background: $c-2;
     }
 
     &__message-user {
-        background: #25feb9;
+        background: $c-1;
         align-self: center;
     }
 
     &__message-client {
-        background: #259afe;
+        background: $c-3;
         align-self: flex-end;
     }
 
@@ -46,5 +46,15 @@
         border: 3px solid black;
         font-size: 3rem;
         padding: 1rem;
+    }
+
+    &__from {
+        display: block;
+        font-size: 1.4rem;
+    }
+
+    &__from time {
+        font-size: 1.2rem;
+        color: $c-5;
     }
 }

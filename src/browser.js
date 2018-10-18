@@ -9,6 +9,11 @@ class Browser {
         this.platform = this.browser.parsedResult.platform.type;
         this.os = this.browser.parsedResult.os.name;
         this.class = this.getClass();
+        this.session = null;
+    }
+
+    getBrowserLabel() {
+        return this.class.label;
     }
 
     getClass() {
@@ -20,6 +25,18 @@ class Browser {
         }
 
         return null;
+    }
+
+    getSession() {
+        return this.session;
+    }
+
+    hasClass() {
+        return !!this.class;
+    }
+
+    setSession(session) {
+        this.session = session;
     }
 }
 
