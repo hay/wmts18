@@ -1,17 +1,30 @@
 .score {
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 1rem;
-    border: 1px solid $c-3;
-    background: white;
+    background: $c-2;
 
-    ul {
+    &__list {
+        @include wh(100%, $top-height - 1rem);
+        @include margin-center;
+        @include flex-center(row);
+        max-width: $max-width;
+        padding: 1rem;
+        background: white;
+        border-radius: $border-radius;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
         list-style: none;
-        display: flex;
     }
 
     li {
         margin: 0 1rem;
+    }
+
+    @include respond-until($screen-sm) {
+        &__list {
+            justify-content: space-around;
+        }
+
+        li {
+            margin: 0;
+        }
     }
 }

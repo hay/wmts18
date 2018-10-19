@@ -1,0 +1,23 @@
+.ui {
+    &__top {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: $top-height;
+    }
+
+    &__center {
+        margin-top: $top-height;
+        margin-bottom: $bottom-height;
+        min-height: 100%;
+    }
+
+    &__bottom {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: $bottom-height;
+    }
+}

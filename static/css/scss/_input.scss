@@ -1,0 +1,14 @@
+.input {
+    @include wh(100%, $bottom-height);
+    background: white;
+
+    &__form input {
+        @include wh(calc(100% - 2rem));
+        font-size: 2rem;
+        padding: 1rem;
+        margin: 1rem;
+        border-radius: $border-radius;
+        background: $c-2;
+        border: 0;
+    }
+}

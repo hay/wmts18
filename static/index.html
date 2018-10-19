@@ -26,9 +26,9 @@
 </head>
 <body>
 <body>
-    <main v-cloak>
-        <div class="score">
-            <ul>
+    <main class="ui" v-cloak>
+        <div class="score ui__top">
+            <ul class="score__list">
                 <li v-for="(type, label) in score"
                     v-bind:key="label">
                     {{type.emoji}}{{type.sessions}}/{{type.count}}
@@ -36,7 +36,7 @@
             </ul>
         </div>
 
-        <div class="chat">
+        <div class="chat ui__center">
             <ul id="chat__messages"
                 class="chat__messages">
                 <li v-for="(msg, index) in messages"
@@ -51,8 +51,10 @@
                     {{msg.text}}
                 </li>
             </ul>
+        </div>
 
-            <form class="chat__input"
+        <div class="input ui__bottom">
+            <form class="input__form"
                   v-on:submit.prevent="submit">
                 <input v-model="input"
                        placeholder="Message here" />
