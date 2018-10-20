@@ -88,6 +88,22 @@ class Controller {
 
                 socket.broadcast.emit('message', message);
             });
+
+            socket.on('hidden', () => {
+                this.isHidden(socket);
+                socket.disconnect();
+            });
+        });
+    }
+
+    isHidden(target) {
+        target.emit('modal', {
+            type : 'error',
+            title : 'Disconnect',
+            text : `
+                Sorry, but you lost focus on this tab.
+                Please keep this tab focused to remain in the chatroom.
+            `
         });
     }
 

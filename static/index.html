@@ -22,7 +22,7 @@
     <meta name="twitter:site" content="@hayify">
 
     <link rel="stylesheet" href="css/style.css">
-    <title>wmts18 &raquo; Hay Kranen</title>
+    <title>🍏🤖🔍🦊🦒💩 &raquo; Hay Kranen</title>
 </head>
 <body>
 <body>
@@ -85,7 +85,13 @@
                     v-on:click="closeModal">
                     OK
                 </button>
-            </div>
+
+                <button
+                    class="button modal__button"
+                    v-if="modal.type === 'error'"
+                    v-on:click="reload">
+                    Reload
+                </button>
         </div>
     </main>
 

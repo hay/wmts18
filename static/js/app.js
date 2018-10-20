@@ -12,6 +12,12 @@ new Vue({
     mounted() {
         socketController.call(this, socket);
         this.scrollChat();
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                socket.emit('hidden');
+            }
+        });
     },
 
     data : {
@@ -26,6 +32,10 @@ new Vue({
         closeModal() {
             this.showModal = false;
             socket.emit('startsession');
+        },
+
+        reload() {
+            window.location.reload();
         },
 
         scrollChat() {
