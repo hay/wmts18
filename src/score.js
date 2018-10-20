@@ -1,5 +1,5 @@
 const { every, fromPairs } = require('lodash');
-const CLASSES = require('../classes.js');
+const CLASSES = require('./classes.js');
 
 function parseClass(cls) {
     return {

@@ -79,7 +79,7 @@ class Controller {
                 const time = `${h.slice(-2)}:${m.slice(-2)}`;
 
                 const message = {
-                    from : browser.getSession(),
+                    from : browser.getSessionEmoji(),
                     text : msg,
                     time : time,
                 };
