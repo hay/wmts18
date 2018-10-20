@@ -3,10 +3,8 @@ import io from 'socket.io-client';
 import socketController from './socket.js';
 
 const socket = io(window.location.host, {
-    path : '/node/wmts18/socket.io'
+    path : `${window.location.pathname}socket.io`
 });
-
-let chatMessages;
 
 new Vue({
     el : "main",

@@ -32,7 +32,7 @@ module.exports = [
         platform : 'desktop',
         browser : 'Safari',
         count : 5,
-        emoji : '🐘'
+        emoji : '🦒'
     },
     {
         label : 'Desktop Internet Explorer',

@@ -2,9 +2,9 @@ const socketio = require('socket.io');
 const Controller = require('./src/controller.js');
 
 module.exports = {
-    onReady(server) {
+    onReady({ server, root }) {
         const io = socketio.listen(server, {
-            path : '/node/wmts18/socket.io'
+            path : `${root}/socket.io`
         });
 
         const controller = new Controller(io);
