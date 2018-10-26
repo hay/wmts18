@@ -48,10 +48,13 @@ class Controller {
                         this.party(io);
                     }
                 } else {
+                    // This crashes browsers
+                    /*
                     socket.emit('error', `
                         Sorry, your browser is not recognized. Try again with
                         a different browser.
                     `);
+                    */
                 }
             });
 

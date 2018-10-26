@@ -32,7 +32,10 @@ class Browser {
     }
 
     getSessionEmoji() {
-        return `${this.class.emoji}${this.session}`;
+        // This crashes browsers otherwise
+        if (this.class) {
+            return `${this.class.emoji}${this.session}`;
+        }
     }
 
     hasClass() {
